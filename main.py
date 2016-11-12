@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-# @Author: prabhakar
-# @Date:   2016-05-03 20:05:15
-# @Last Modified by:   Prabhakar Gupta
-# @Last Modified time: 2016-05-08 23:55:01
+import numpy as np
+
 
 from PIL import Image
 from pytesser.pytesser import *
@@ -16,13 +13,23 @@ def create_directory(path):
     if not os.path.exists(path):
 	    os.makedirs(path)
 
-
 def check_path(path):
 	if os.path.exists(path):
 		return True
 	else:
 		return False
 
+def preprocess(image):
+	image.show()
+	image = np.array(image)
+	for sublist in image:
+		for entry in sublist:
+			if sum(entry) < 750:
+				for value in entry:
+					value = 0;
+	image = Image.fromarray(image)
+	image.show()
+	return image
 
 path = sys.argv[1]
 
@@ -45,7 +52,8 @@ if check_path(path):
 			count += 1
 			image_file_name = path + '/' + f
 			im = Image.open(image_file_name)
-			im.show()
+
+			im = preprocess(im)
 			text = image_to_string(im)
 			text = image_file_to_string(image_file_name)
 			text = image_file_to_string(image_file_name, graceful_errors=True)
@@ -65,7 +73,7 @@ if check_path(path):
 	if count + other_files == 0:
 		print "No files found at your given location"
 	else :
-		print str(count) + " / " + str(count + other_files) + " files converted"
+		print str(count) + " / " + str(count) + " files converted"
 
 else :
 	print "No directory found at " + format(path)
