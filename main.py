@@ -21,8 +21,6 @@ text_file = open(text_file_path, "w+")
 text_file.write("%s" % text)
 text_file.close()
 
-print('done with parsing image')
-
 food_items = []
 prices = []
 
