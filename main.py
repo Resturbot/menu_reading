@@ -38,6 +38,7 @@ with open('test.txt') as f:
 data = dict(zip(food_items, prices))
 
 def main():
+	print(data)
 	return data
 
 # with open('data.json', 'w') as outfile:
