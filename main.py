@@ -37,6 +37,12 @@ with open('test.txt') as f:
 
 data = dict(zip(food_items, prices))
 
-with open('data.json', 'w') as outfile:
-    json.dump(data, outfile, sort_keys=True, indent=4, separators=(',', ': '))
+def main():
+	return data
+
+# with open('data.json', 'w') as outfile:
+    # json.dump(data, outfile, sort_keys=True, indent=4, separators=(',', ': '))
+
+if __name__ == '__main__':
+	main()
 
